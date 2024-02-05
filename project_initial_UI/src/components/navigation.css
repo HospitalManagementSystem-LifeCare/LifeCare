@@ -1,0 +1,29 @@
+/* components/Navigation.css */
+body{
+    margin: 0PX;
+}
+.nav-container {
+    background-color: #02243a;
+    margin: 0px;
+    padding-left: 0px;
+    padding-top: 130px; /* Add padding to create space for the fixed header */
+  }
+  
+  .nav-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Center the navigation items horizontally */
+  }
+  
+  .nav-item {
+    margin-right: 20px;
+  }
+  
+  .nav-item a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
