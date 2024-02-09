@@ -80,6 +80,6 @@ public class Health_History {
 	@JoinColumn(name = "patient_Id", nullable = false)
 	private Patient patient;
 
-	@OneToMany(mappedBy = "healthHistory", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "healthHistory", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Medicine> medicines = new ArrayList<>();
 }

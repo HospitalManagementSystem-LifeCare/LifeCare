@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -43,12 +44,12 @@ public class Patient {
 	@Column(length = 30)
 	private String lname;
 	private int age;
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	@Column(length=10)
 	private Gender gender;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
-	@OneToMany(mappedBy = "patient" ,  cascade  = CascadeType.ALL)
+	@OneToMany(mappedBy = "patient" ,  cascade  = CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<Health_History> history = new ArrayList<>();
 	
 	

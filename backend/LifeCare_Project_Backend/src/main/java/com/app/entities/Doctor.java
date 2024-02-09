@@ -48,9 +48,9 @@ public class Doctor extends Employee {
 	@JsonFormat(pattern = "HH:mm:ss")
 	private LocalTime endTime;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "doc_availability", joinColumns = @JoinColumn(name = "doc_id", nullable = false), inverseJoinColumns = @JoinColumn(name = "a_id", nullable = false))
 	private List<ADate> availability;
-
+	
 	
 }

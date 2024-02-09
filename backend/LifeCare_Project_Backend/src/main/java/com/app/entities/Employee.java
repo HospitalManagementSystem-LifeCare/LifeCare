@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -38,7 +39,7 @@ public class Employee {
 	private String name;
 	@Column(length=20)
 	private String qualificaton;
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	@Column(length = 10)
 	private Gender gender;
 	private double salary;
