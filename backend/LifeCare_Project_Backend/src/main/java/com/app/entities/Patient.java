@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -36,22 +38,23 @@ public class Patient {
 
 	@Column(name = "admit_status", columnDefinition = "boolean default false")
 	private Boolean admitStatus;
+	@Column(length=20)
+	private String fname;
+	@Column(length = 30)
+	private String lname;
+	private int age;
+	@Enumerated
+	@Column(length=10)
+	private Gender gender;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Address address;
+	@OneToMany(mappedBy = "patient" ,  cascade  = CascadeType.ALL)
+	private List<Health_History> history = new ArrayList<>();
+	
+	
 
-	@Column(name = "current_status", columnDefinition = "boolean default false")
-	private Boolean currentStatus;
+	
 
-	@OneToOne()
-	@JoinColumn(name = "user_Id")
-	private User user;
 
-	@ManyToOne
-	@JoinColumn(name = "doctor_Id")
-	private Doctor doctor;
-
-	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Health_History> health_history = new ArrayList<>();
-
-	@ManyToOne
-	@JoinColumn(name = "ward_Id")
-	private Ward ward;
+	
 }

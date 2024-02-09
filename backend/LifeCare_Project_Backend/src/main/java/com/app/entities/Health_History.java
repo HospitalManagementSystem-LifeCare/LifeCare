@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -41,10 +42,9 @@ public class Health_History {
 
 	@Column(length = 300)
 	private String diseases;
-
-	@Column(name = "appointment_date")
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private LocalDate appointmentDate;
+	
+	@OneToOne
+	private Appointment appointment;
 
 	@Column(name = "symptoms", length = 100)
 	private String symptoms;
@@ -52,9 +52,7 @@ public class Health_History {
 	@Column(name = "paid_amount")
 	private double paidAmount;
 
-	@Column(name = "appointment_time")
-	@JsonFormat(pattern = "HH:mm:ss")
-	private LocalTime appointmentTime;
+	
 
 	@Column(name = "admit_date")
 	@JsonFormat(pattern = "yyyy-MM-dd")

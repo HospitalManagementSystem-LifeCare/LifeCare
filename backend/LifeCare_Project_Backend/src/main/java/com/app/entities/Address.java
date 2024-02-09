@@ -1,5 +1,4 @@
 package com.app.entities;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +20,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString(exclude = "user")
+@ToString
 public class Address {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,7 +48,5 @@ public class Address {
 	@Column(length = 20)
 	private int pincode;
 
-	@OneToOne()
-	@JoinColumn(name = "user_Id")
-	private User user;
+	
 }

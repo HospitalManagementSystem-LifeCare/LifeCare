@@ -5,10 +5,12 @@ import java.time.LocalDate;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -19,8 +21,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+import javax.persistence.InheritanceType;
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "employee")
 @Getter
 @Setter
@@ -28,25 +31,32 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Employee {
 	@Id
-	@Column(name = "employee_id")
+	@Column(name = "empId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
+	@Column(length=50)
+	private String name;
+	@Column(length=20)
 	private String qualificaton;
-
+	@Enumerated
+	@Column(length = 10)
+	private Gender gender;
 	private double salary;
-
+	@OneToOne(cascade = CascadeType.ALL)
+	private Address address;
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "hire_date")
 	private LocalDate hiredate;
-
-	@Column(columnDefinition = "boolean default false")
+	@Column(name = "birth_date")
+	private LocalDate birthdate;
+	@Column(length = 10)
+	private String contactNo;
+	@Column(columnDefinition = "boolean default true")
 	private boolean status;
+	@Column(length = 50,unique = true)
+	private String email;
+	@Column(length = 100,nullable = false)
+	private String password;
 
-	@OneToOne()
-	@JoinColumn(name = "user_Id", nullable = false)
-	private User user;
-
-	@OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Doctor doctor;
+	
 }

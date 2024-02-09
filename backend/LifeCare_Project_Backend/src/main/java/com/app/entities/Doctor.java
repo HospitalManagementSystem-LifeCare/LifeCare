@@ -1,5 +1,6 @@
 package com.app.entities;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +13,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -25,15 +29,13 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "doctor")
+@PrimaryKeyJoinColumn(name = "empId")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Doctor {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "doctor_Id")
-	private int id;
+public class Doctor extends Employee {
+	
 
 	@Column(name = "doctor_fee", nullable = false, length = 100)
 	private double doctorFee;
@@ -45,13 +47,10 @@ public class Doctor {
 	@Column(name = "scheduled_end_time")
 	@JsonFormat(pattern = "HH:mm:ss")
 	private LocalTime endTime;
+	
+	@ManyToMany
+	@JoinTable(name = "doc_availability", joinColumns = @JoinColumn(name = "doc_id", nullable = false), inverseJoinColumns = @JoinColumn(name = "a_id", nullable = false))
+	private List<ADate> availability;
 
-	private String days;
-
-	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Patient> patients = new ArrayList<>();
-
-	@OneToOne()
-	@JoinColumn(name = "employee_id", nullable = false)
-	private Employee employee;
+	
 }
