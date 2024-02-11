@@ -1,6 +1,7 @@
 package com.app.services;
 
 import javax.transaction.Transactional;
+
 import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.app.dao.DoctorDao;
 import com.app.dto.DoctorDto;
-import com.app.dto.EmployeeDto;
 import com.app.entities.Doctor;
 
 @Service

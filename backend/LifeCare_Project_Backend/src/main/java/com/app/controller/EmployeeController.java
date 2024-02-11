@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dto.EmployeeDTO;
 import com.app.entities.Employee;
 import com.app.services.EmployeeService;
 
@@ -17,7 +18,7 @@ public class EmployeeController {
 	private EmployeeService empService;
 	
 	@GetMapping("/all")
-	public List<Employee> getAllEmps() {
+	public List<EmployeeDTO> getAllEmps() {
 		return	empService.getAllEmps();
 		 
 	}

@@ -49,7 +49,7 @@ public class Patient {
 	private Gender gender;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
-	@OneToMany(mappedBy = "patient" ,  cascade  = CascadeType.ALL,fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "patient" ,  cascade  = CascadeType.ALL)
 	private List<Health_History> history = new ArrayList<>();
 	
 	

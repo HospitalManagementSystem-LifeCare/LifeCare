@@ -2,10 +2,11 @@ package com.app.services;
 
 import java.util.List;
 
+import com.app.dto.EmployeeDTO;
 import com.app.entities.Employee;
 
 public interface EmployeeService {
 
-	List<Employee> getAllEmps();
+	List<EmployeeDTO> getAllEmps();
 
 }
