@@ -2,6 +2,8 @@ package com.app.dto;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotBlank;
+
 import com.app.pojos.Gender;
 import com.app.pojos.Role;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -9,26 +11,38 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
-public class DoctorDTO {
+public class DoctorRegistrationDTO {
 	private int id;
+	@NotBlank(message = "name required !!!!")
 	private String name;
-	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
 	private LocalDate dob;
 	private Gender gender;
 	private String specialization;
-	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
 	private LocalDate joinDate;
 	private String mobileNo;
+	@NotBlank(message = "email required !!!!")
 	private String emailid;
+	@NotBlank(message = "username required !!!!")
 	private String username;
 	private int user_id;
 	private Role role;
+	private int dept_id;
 	
-	public DoctorDTO() {
+	public int getDept_id() {
+		return dept_id;
+	}
+
+	public void setDept_id(int dept_id) {
+		this.dept_id = dept_id;
+	}
+
+	public DoctorRegistrationDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DoctorDTO(int id, String name, LocalDate dob, Gender gender, String specialization, LocalDate joinDate,
+	public DoctorRegistrationDTO(int id, String name, LocalDate dob, Gender gender, String specialization, LocalDate joinDate,
 			String mobileNo, String emailid, String username, int user_id,Role role) {
 		this.id = id;
 		this.name = name;
@@ -43,7 +57,7 @@ public class DoctorDTO {
 		this.role=role;
 	}
 
-	public DoctorDTO(int id, String name, LocalDate dob, Gender gender, String specialization, LocalDate joinDate,
+	public DoctorRegistrationDTO(int id, String name, LocalDate dob, Gender gender, String specialization, LocalDate joinDate,
 			String mobileNo, String emailid) {
 		this.id = id;
 		this.name = name;
@@ -55,22 +69,13 @@ public class DoctorDTO {
 		this.emailid = emailid;
 		
 	}
-	public DoctorDTO(int id,String name,String mobileNo, Gender gender, String specialization, LocalDate joinDate,int user_id) {
-		this.id=id;
-		this.name=name;
-		this.mobileNo=mobileNo;
-		this.gender = gender;
-		this.specialization =specialization;
-		this.joinDate = joinDate;
-		this.user_id=user_id;
-	}
 	
-	public DoctorDTO(int id,String name) {
+	public DoctorRegistrationDTO(int id,String name) {
 		this.id=id;
 		this.name=name;
 	}
 	
-	public DoctorDTO(int id,String name,int user_id) {
+	public DoctorRegistrationDTO(int id,String name,int user_id) {
 		this.id=id;
 		this.name=name;
 		this.user_id=user_id;
