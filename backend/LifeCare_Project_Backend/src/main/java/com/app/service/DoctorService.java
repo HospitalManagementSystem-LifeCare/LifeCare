@@ -11,7 +11,7 @@ public interface DoctorService {
 	public void addDoctor(Doctor d); 
 //	public void addDoctor(DoctorRegistrationDTO d); 
 	public Doctor getDoctorDetails(User u);
-	public void sendMailToPatient(Appointment a);
+//	public void sendMailToPatient(Appointment a);
 	public Doctor showDoctorDetails(int id);
 	public String editProfile(DoctorDTO d);
 	public List<Doctor> getDoctorByDept(int id);

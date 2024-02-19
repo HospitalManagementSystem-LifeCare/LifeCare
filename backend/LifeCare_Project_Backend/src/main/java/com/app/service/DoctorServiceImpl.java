@@ -3,13 +3,14 @@ package com.app.service;
 import java.util.List;
 
 
+
 import javax.transaction.Transactional;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
+//import org.springframework.mail.SimpleMailMessage;
+//import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.app.custom_exceptions.ResourceNotFoundException;
@@ -22,6 +23,7 @@ import com.app.pojos.Doctor;
 import com.app.pojos.User;
 import com.app.pojos.UserValidity;
 
+
 @Service
 @Transactional
 public class DoctorServiceImpl implements DoctorService {
@@ -30,8 +32,8 @@ public class DoctorServiceImpl implements DoctorService {
 	@Autowired
 	private DepartmentDao deptDao;
 	
-	@Autowired 
-	private JavaMailSender javaMailSender;
+//	@Autowired 
+//	private JavaMailSender javaMailSender;
 	
 	@Value("${spring.mail.username}")
 	private String email;
@@ -60,19 +62,19 @@ public class DoctorServiceImpl implements DoctorService {
 		return doctorDao.findDoctorByUser(u).orElse(null);
 	}
 
-	@Override
-	public void sendMailToPatient(Appointment a) {
-		
-		SimpleMailMessage message = new SimpleMailMessage(); 
-		String patientmail = a.getPatient().getEmailid();
-		
-			message.setFrom(email);
-	        message.setTo(patientmail); 
-	        message.setSubject("Appointment"); 
-	        message.setText("Appointment is confirmed");
-	        javaMailSender.send(message);
-		
-	}
+//	@Override
+//	public void sendMailToPatient(Appointment a) {
+//		
+//		SimpleMailMessage message = new SimpleMailMessage(); 
+//		String patientmail = a.getPatient().getEmailid();
+//		
+//			message.setFrom(email);
+//	        message.setTo(patientmail); 
+//	        message.setSubject("Appointment"); 
+//	        message.setText("Appointment is confirmed");
+//	        javaMailSender.send(message);
+//		
+//	}
 	
 	@Override
 	public String editProfile(DoctorDTO d) {
@@ -110,5 +112,6 @@ public class DoctorServiceImpl implements DoctorService {
 		return doctorDao.findById(id).orElse(null);
 
 	}
+
 }
 	
